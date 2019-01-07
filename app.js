@@ -3,6 +3,16 @@ const app = express();
 
 const records = require('./records');
 
+function asyncHandler(cb){
+    return async (req,res, next) => {
+        try {
+            await cb(req, res, next);
+        } catch(err) {
+            next(err);
+        }
+    }
+}
+
 app.use(express.json());
 
 // Send a GET request to /quotes to READ a list of quotes
