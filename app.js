@@ -5,7 +5,6 @@ const routes = require('./routes');
 app.use(express.json());
 app.use('/api', routes);
 
-
 app.use((req, res, next) => {
     const err = new Error("Not Found");
     err.status = 404;
@@ -18,7 +17,7 @@ app.use((err, req, res, next) => {
         error: {
             message: err.message
         }
-    })
+    });
 });
 
 app.listen(3000, () => console.log('Quote API listening on port 3000!'));
